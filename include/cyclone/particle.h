@@ -38,15 +38,23 @@ namespace cyclone
 
         Vector3 getPosition() const;
 
+        void getPosition(Vector3 *position);
+
         void setPosition(const Vector3 &position);
+
+        void setPosition(const real x, const real y, const real z);
 
         Vector3 getVelocity() const;
 
         void setVelocity(const Vector3 &velocity);
 
+        void setVelocity(const real x, const real y, const real z);
+
         Vector3 getAcceleration() const;
 
         void setAcceleration(const Vector3 &acceleration);
+
+        void setAcceleration(const real x, const real y, const real z);
 
         real getMass() const;
 

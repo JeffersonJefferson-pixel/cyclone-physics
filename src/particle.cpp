@@ -31,9 +31,21 @@ Vector3 Particle::getPosition() const
     return position;
 }
 
+void Particle::getPosition(Vector3 *position)
+{
+    *position = Particle::position;
+}
+
 void Particle::setPosition(const Vector3 &position) 
 {
     Particle::position = position;
+}
+
+void Particle::setPosition(const real x, const real y, const real z) 
+{
+    position.x = x;
+    position.y = y; 
+    position.z = z;
 }
 
 Vector3 Particle::getVelocity() const
@@ -46,6 +58,13 @@ void Particle::setVelocity(const Vector3 &velocity)
     Particle::velocity = velocity;
 }
 
+void Particle::setVelocity(const real x, const real y, const real z) 
+{
+    velocity.x = x;
+    velocity.y = y;
+    velocity.z = z;
+}
+
 Vector3 Particle::getAcceleration() const 
 {
     return acceleration;
@@ -54,6 +73,13 @@ Vector3 Particle::getAcceleration() const
 void Particle::setAcceleration(const Vector3 &acceleration)
 {
     Particle::acceleration = acceleration;
+}
+
+void Particle::setAcceleration(const real x, const real y, const real z)
+{
+    acceleration.x = x;
+    acceleration.y = y;
+    acceleration.z = z;
 }
 
 real Particle::getMass() const 
