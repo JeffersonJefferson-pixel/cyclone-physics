@@ -51,6 +51,8 @@ class BallisticDemo : public Application
 public:
     BallisticDemo();
 
+    virtual const char* getTitle();
+
     virtual void display();
 
     virtual void key(unsigned char key);
@@ -69,9 +71,22 @@ BallisticDemo::BallisticDemo()
     }
 }
 
+const char* BallisticDemo::getTitle()
+{
+    return "Cyclone > Ballistic Demo";
+}
+
+
 void BallisticDemo::fire()
 {
     AmmoRound *shot;
+
+    for (shot = ammo; shot < ammo + ammoRounds; shot++)
+    {
+        if (shot->type == UNUSED) break;
+    }
+
+    if (shot >= ammo + ammoRounds) return;
 
     switch (currentShotType)
     {
@@ -91,11 +106,13 @@ void BallisticDemo::fire()
         shot->particle.setMass(1.0f);
         shot->particle.setVelocity(0.0f, 0.0f, 10.0f);
         shot->particle.setAcceleration(0.0f, 0.6f, 0.0f); // float up
+        shot->particle.setDamping(0.9f);
         break;
     case LASER:
         shot->particle.setMass(0.1f); // almost no mass;
         shot->particle.setVelocity(0.0f, 0.0f, 100.0f);
         shot->particle.setAcceleration(0.0f, 0.0f, 0.0f); // no gravity.
+        shot->particle.setDamping(0.99f);
         break;
     }
 
@@ -116,7 +133,7 @@ void BallisticDemo::display()
     glPushMatrix();
     glTranslatef(0.0f, 1.5f, 0.0f);
     glutSolidSphere(0.1f, 5, 5);
-    glTranslate(0.0f, -1.5f, 0.0f);
+    glTranslatef(0.0f, -1.5f, 0.0f);
     glColor3f(0.75f, 0.75f, 0.75f);
     glScalef(1.0f, 0.1f, 1.0f);
     glutSolidSphere(0.1f, 5, 5);

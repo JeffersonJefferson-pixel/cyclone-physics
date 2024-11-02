@@ -41,6 +41,12 @@ void keyboard(unsigned char key, int x, int y)
   app->key(key);
 }
 
+void reshape(int width, int height)
+{
+    app->resize(width, height);
+}
+
+
 int main(int argc, char** argv)
 {
   glutInit(&argc, argv);
@@ -52,6 +58,8 @@ int main(int argc, char** argv)
   glutKeyboardFunc(keyboard);
   glutMouseFunc(mouse);
   glutDisplayFunc(display);
+  glutReshapeFunc(reshape);
+  glutIdleFunc(update);
 
   app->initGraphics();
   glutMainLoop();

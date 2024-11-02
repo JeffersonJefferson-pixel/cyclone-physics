@@ -3,17 +3,33 @@
 
 struct TimingData
 {
-  unsigned lastFrameTimestamp;
+	unsigned frameNumber;
+	
+	unsigned lastFrameTimestamp;
 
-  unsigned lastFrameDuration;
+	unsigned lastFrameDuration;
 
-  static TimingData& get();
+	unsigned long lastFrameClockstamp;
+	
+	unsigned long lastFrameClockTicks;
 
-  static void update();
+	bool isPaused;
 
-  static void init();
+	double averageFrameDuration;
 
-  static void deinit();
+	float fps;
+
+	static TimingData& get();
+
+	static void update();
+
+	static void init();
+
+	static void deinit();
+
+	static unsigned getTime();
+
+	static unsigned long getClock();
 };
 
 #endif
