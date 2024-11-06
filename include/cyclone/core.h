@@ -30,6 +30,8 @@ namespace cyclone
         Vector3(const real x, const real y, const real z)
             : x(x), y(y), z(z) {}
 
+        const static Vector3 GRAVITY;
+
         /** Flips all the components of the vector. */
         void invert()
         {
