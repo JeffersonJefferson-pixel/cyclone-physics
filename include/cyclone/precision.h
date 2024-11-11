@@ -5,6 +5,7 @@
 
 namespace cyclone 
 {
+#define SINGLE_PRECISION
     typedef float real;
     #define REAL_MAX FLT_MAX
     #define real_sqrt sqrtf

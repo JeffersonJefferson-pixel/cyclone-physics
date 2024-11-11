@@ -10,13 +10,13 @@ namespace cyclone
     public:
         Random();
 
-        void Random::seed(unsigned s);
+        void seed(unsigned s);
         
-        unsigned Random::rotl(unsigned n, unsigned r);
+        unsigned rotl(unsigned n, unsigned r);
 
-        unsigned Random::rotr(unsigned n, unsigned r);
+        unsigned rotr(unsigned n, unsigned r);
 
-        unsigned Random::randomBits();
+        unsigned randomBits();
 
         real randomReal();
 
