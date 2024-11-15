@@ -2,3 +2,4 @@
 #include "core.h"
 #include "particle.h"
 #include "random.h"
+#include "pfgen.h"

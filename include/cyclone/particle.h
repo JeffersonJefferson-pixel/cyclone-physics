@@ -28,6 +28,10 @@ namespace cyclone
          */
         real inverseMass;
 
+        /**
+         * Holds the accumulated force to be aplpied at the next simulation iteration.
+         * It is zeroed at each integration step.
+         */
         Vector3 forceAccum;
 
     public:
@@ -45,6 +49,8 @@ namespace cyclone
         void setPosition(const real x, const real y, const real z);
 
         Vector3 getVelocity() const;
+
+        void getVelocity(Vector3 *velocity);
 
         void setVelocity(const Vector3 &velocity);
 
@@ -68,7 +74,20 @@ namespace cyclone
 
         void setDamping(const real damping);
 
+        /**
+         * Returns true if mass of the particle is finite.
+         */
+        bool hasFiniteMass() const;
+
+        /**
+         * Clears the forces applied to the particle.
+         */
         void clearAccumulator();
+        
+        /**
+         * Adds the given force to the particle to be applied at the next iteration.
+         */
+        void addForce(const Vector3 &force);
     };
 }
 

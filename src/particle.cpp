@@ -53,6 +53,11 @@ Vector3 Particle::getVelocity() const
     return velocity;
 }
 
+void Particle::getVelocity(Vector3 *velocity) 
+{
+    *velocity = Particle::velocity;
+};
+
 void Particle::setVelocity(const Vector3 &velocity)
 {
     Particle::velocity = velocity;
@@ -117,7 +122,17 @@ void Particle::setDamping(const real damping)
     Particle::damping = damping;
 }
 
+bool Particle::hasFiniteMass() const 
+{
+    return inverseMass > 0.0f;
+}
+
 void Particle::clearAccumulator()
 {
     forceAccum.clear();
 }
+
+void Particle::addForce(const Vector3 &force) 
+{
+    forceAccum += force;
+} 
