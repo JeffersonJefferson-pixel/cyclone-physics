@@ -74,6 +74,74 @@ namespace cyclone
         ParticleDrag(real k1, real k2);
         virtual void updateForce(Particle *particle, real duration);
     };
+
+    // need to create generator for each particle object.
+    class ParticleSpring: public ParticleForceGenerator
+    {
+        Particle *other;
+        real springConstant;
+        real restLength;
+
+    public:
+        ParticleSpring(Particle *other, real springConstant, real restLength);
+        virtual void updateForce(Particle *particle, real duration);
+    };
+
+    class ParticleAnchoredSpring: public ParticleForceGenerator {
+    protected:
+        Vector3 *anchor;
+
+        real springConstant;
+
+        real restLength;
+
+    public:
+        ParticleAnchoredSpring(Vector3 *anchor, real springConstant, real restLength);
+        virtual void updateForce(Particle *particle, real duration);
+    };
+
+    class ParticleBungee: public ParticleForceGenerator {
+        Particle *other;
+
+        real springConstant;
+
+        real restLength;
+
+    public:
+        ParticleBungee(Particle *other, real springConstant, real restLength);
+        virtual void updateForce(Particle *particle, real duration);
+    };
+
+    class ParticleAnchoredBungee : public ParticleAnchoredSpring
+    {
+    public:
+        virtual void updateForce(Particle *particle, real duration);
+    };
+
+    class ParticleBuoyancy : public ParticleForceGenerator 
+    {
+        real maxDepth;
+        real volume;
+        real waterHeight;
+        // pure water has density of 1000 kg per cubic meter.
+        real liquidDensity;
+    public:
+        ParticleBuoyancy(real maxDepth, real volume, real waterHeight, real liquidDensity = 1000.0f); 
+        virtual void updateForce(Particle *particle, real duration);
+    };
+
+    class ParticleFakeSpring : public ParticleForceGenerator
+    {
+        Vector3 *anchor;
+
+        real springConstant;
+
+        real damping;
+
+    public:
+        ParticleFakeSpring(Vector3 *anchor, real springConstant, real damping);
+        virtual void updateForce(Particle *particle, real duration);
+    };
 }
 
 #endif;
